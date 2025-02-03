@@ -1,0 +1,55 @@
+SELECT *
+FROM `students`
+WHERE `date_of_birth` > '1990-01-01' AND `date_of_birth` < '1991-01-01';
+
+SELECT * 
+FROM `courses`
+WHERE `cfu` > 10;
+
+SELECT *
+FROM `students`
+WHERE `date_of_birth` <= '1995-01-01';
+
+SELECT *
+FROM `courses`
+WHERE `period` = 'I semestre' AND `year` = 1;
+
+SELECT *
+FROM `exams`
+WHERE `date` = '2020-06-20' AND `hour` >= '14:00:00';
+
+SELECT *
+FROM `degrees`
+WHERE `level` = 'magistrale';
+
+SELECT COUNT(*)
+FROM `departments`;
+
+SELECT COUNT(*)
+FROM `teachers`
+WHERE `phone` is null;
+
+INSERT INTO students (name, surname, email, date_of_birth, fiscal_code, enrolment_date, registration_number, degree_id)
+VALUES ('mio nome', 'mio cognome', 'il.tuo.email@example.com', '1995-05-15', 'ABCD123123', '2025-02-03', 12345, FLOOR(1 + (RAND() * 10)));
+SELECT *
+FROM `students`;
+
+UPDATE `teachers`
+SET `office_address` = 126
+WHERE `name` = 'Pietro' AND `surname` = 'Rizzo';
+
+DELETE FROM students
+WHERE name = 'mio nome' AND surname = 'mio cognome' AND email = 'il.tuo.email@example.com';
+
+SELECT YEAR(enrolment_date) AS anno, COUNT(*) AS numero_iscritti
+FROM `students`
+GROUP BY anno
+ORDER BY anno;
+
+SELECT (office_address) AS ufficio, COUNT(*) AS N_uffici_professori 
+from `teachers`
+Group by office_address
+Order by N_uffici_professori;
+
+SELECT AVG(vote) as Media_voti
+from exam_student;
