@@ -47,7 +47,7 @@ ON teachers.id = course_teacher.teacher_id
 ORDER BY degrees.name, courses.name, teachers.surname;
 
 6
-SELECT departments.name as nome_dipartimento, teachers.name, teachers.surname
+SELECT departments.name as nome_dipartimento, COUNT(DISTINCT teacher_id) as numero_docenti
 FROM departments
 JOIN degrees
 ON departments.id = degrees.department_id
@@ -58,3 +58,4 @@ ON courses.id = course_teacher.course_id
 JOIN teachers
 ON course_teacher.teacher_id = teacher_id
 WHERE departments.name = 'Dipartimento di Matematica'
+GROUP BY departments.name
