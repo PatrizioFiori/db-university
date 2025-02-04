@@ -53,3 +53,7 @@ Order by N_uffici_professori;
 
 SELECT AVG(vote) as Media_voti
 from exam_student;
+
+SELECT count(*) AS `degrees_number`, `department_id`
+FROM degrees
+group by department_id;
