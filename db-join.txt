@@ -1,0 +1,60 @@
+1
+SELECT degrees.name, students.name, students.id
+FROM degrees
+Join students
+ON degrees.id = students.degree_id
+where degrees.name = 'corso di laurea in economia'
+order by id asc
+
+2
+select departments.*, degrees.level
+from degrees
+Join departments
+ON departments.id = degrees.department_id
+where degrees.level = 'magistrale' AND departments.name = 'Dipartimento di Neuroscienze'
+
+3
+SELECT teachers.id, teachers.name, teachers.surname, courses.name, courses.period 
+from courses
+join course_teacher
+join teachers
+on teachers.id = course_teacher.teacher_id 
+where teachers.name = 'Fulvio' AND teachers.surname = 'Amato'
+
+4
+SELECT 
+    students.id as id,
+    students.name AS student_name,
+    students.surname AS student_surname,
+    degrees.name AS degree_name,
+    departments.name AS department_name
+FROM students
+JOIN degrees 
+ON students.degree_id = degrees.id
+JOIN departments 
+ON degrees.department_id = departments.id
+ORDER BY students.surname, students.name;
+
+5
+Select degrees.name, courses.name, teachers.name, teachers.surname
+from degrees
+JOIN courses
+ON degrees.id = courses.degree_id
+JOIN course_teacher
+ON degrees.id = course_teacher.course_id
+JOIN teachers
+ON teachers.id = course_teacher.teacher_id
+ORDER BY degrees.name, courses.name, teachers.surname;
+
+6
+SELECT departments.name as nome_dipartimento, teachers.name, teachers.surname
+FROM departments
+JOIN degrees
+ON departments.id = degrees.department_id
+JOIN courses
+ON degrees.id = courses.degree_id
+JOIN course_teacher
+ON courses.id = course_teacher.course_id
+JOIN teachers
+ON course_teacher.teacher_id = teacher_id
+WHERE departments.name = 'Dipartimento di Matematica'
